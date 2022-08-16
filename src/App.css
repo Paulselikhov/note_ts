@@ -1,14 +1,43 @@
 .App{
-    display: flex;
+    
 }
 
-.NotesListForm{
+.Head{
+    display: flex;
+}
+.NewNote{
+    width: 20%;
+    border: 1px solid #000;
+    border-right: none;
+    border-bottom: none;
+}
+.NewNote_button{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.DeleteNote{
+    width: 80%;
+    border: 1px solid #000;
+    border-bottom: none;
+}
+
+
+
+.Content{
+    display: flex;
+}
+.NotesList{
     border: 1px solid #000;
     border-right: none;
     width: 20%;
     height: 90vh;
 }
-.NoteForm{
+.NoteItem{
+    padding: 10px;
+    border: 1px solid #000;
+}
+.NoteEditForm{
     border: 1px solid #000;
     width: 80%;
     height: 90vh;
@@ -18,17 +47,5 @@
 .Menu{
     display: flex;
 }
-.NewNote{
-    height: 50px;
-    border-bottom: 1px solid #000;
-}
-.NewNote_button{
-    width: 100%;
-    height: 100%;
-    border: none;
-    
-}
-.DeleteNote{
-    height: 50px;
-    border-bottom: 1px solid #000;
-}
+
+
