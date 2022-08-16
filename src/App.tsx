@@ -17,6 +17,7 @@ function App() {
   const [note, setNote] = useState<INote>(notes[0]);
 
   function updateNoteState(note:INote){
+    console.log('сработала функция updateNoteState ')
     setNote(note);
   }
 
@@ -32,7 +33,7 @@ function App() {
           </div>
           <div className='Content'>
             <NotesList items={notes} updateNoteState={updateNoteState} />
-            <NoteEditForm item={note}  />
+            <NoteEditForm updateNoteState={updateNoteState} item={note}  />
           </div>
           
     </div>
