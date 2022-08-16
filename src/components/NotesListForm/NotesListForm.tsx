@@ -4,23 +4,19 @@ import NoteItem from '../NoteForm/NoteItem';
 import { INote } from './../types/types';
 
 
-
-
-
-
-interface NotesListFormProps<T>{
-  items: T[];
-  renderItem: (item: T) => React.ReactNode;
+interface NotesListFormProps{
+  items: INote[];
 }
 
-function NotesListForm<T>(props: NotesListFormProps<T>){
-
+const NotesListForm: FC<NotesListFormProps> = ({items}) => {
   return (
     <div className='NotesListForm'>
         <div className='NewNote'>
           <button className='NewNote_button'>+ Новая заметка</button>
         </div>
-        {props.items.map(props.renderItem)}
+        {items.map( (item) =>
+          <NoteItem note={item}  />
+        )}
     </div>
     
   )

@@ -16,9 +16,7 @@ function App() {
 
   return (
     <div className="App">
-          <NotesListForm items={note} renderItem={(note: INote) =>
-            <NoteItem note={note} key={note.id} />
-          }  />
+          <NotesListForm items={note} />
           <NoteForm />
     </div>
   );
