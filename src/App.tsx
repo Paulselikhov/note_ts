@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import NoteForm from './components/NoteForm/NoteForm';
+import NoteItem from './components/NoteForm/NoteItem';
+import NotesListForm from './components/NotesListForm/NotesListForm';
+import { INote } from './components/types/types';
+
+
 
 function App() {
+
+  const [note, setNote] = useState<INote[]>([
+    {id: 1, name: 'Первая заметка', description: 'Описание заметки', status: 'pending'},
+    {id: 2, name: 'Первая заметка', description: 'Описание заметки', status: 'pending'}
+  ]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+          <NotesListForm items={note} renderItem={(note: INote) =>
+            <NoteItem note={note} key={note.id} />
+          }  />
+          <NoteForm />
     </div>
   );
 }
