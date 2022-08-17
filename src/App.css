@@ -23,10 +23,12 @@ textarea{
     border: 1px solid rgb(128, 73, 73);
     border-bottom: none;
     height: 80px;
+    align-items: center;
     
 }
 .addNote{
     width: 25%;
+    height: 45%;
 
 }
 .addNote_button{
@@ -36,6 +38,7 @@ textarea{
 
 .DeleteNote{
     width: 25%;
+    height: 45%;
     border-left: 1px solid rgb(128, 73, 73);
 }
 .DeleteNote_button{
@@ -43,6 +46,7 @@ textarea{
     height: 100%;
 }
 .FindNote{
+    height: 45%;
     width: 50%;
     display: flex;
     align-items: center;
@@ -50,9 +54,9 @@ textarea{
     border-left: 1px solid rgb(128, 73, 73);
 }
 .FindNote_input{
+    padding: 10px;
     
-    padding-left: 10px;
-    width: 95%;
+    width: 90%;
     height: 90%;
     
 }
@@ -81,7 +85,7 @@ textarea{
 .NoteEditForm{
     width: 75%;
     height: 100%;
-    border-left: 1px solid rgb(128, 73, 73);
+    border-left: 1px solid rgb(214, 155, 155);
 }
 .NoteEditForm_found{
     height: 100%;
