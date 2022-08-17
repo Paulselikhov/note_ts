@@ -15,12 +15,6 @@ interface NotesListProps{
 const NotesList: FC<NotesListProps> = ({notes, updateNote, activeId, setActiveId, }) => {
 
   
-
-
-  useEffect(() => {
-    console.log('render noteList')
-  })
-  
   return (
     <div className='NotesList'>
         {notes.map( (item) =>

@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
+import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 import './App.css';
 import NoteEditForm from './components/NoteEditForm/NoteEditForm';
 import NotesList from './components/NotesListForm/NotesList';
@@ -9,16 +10,18 @@ import { INote } from './components/types/types';
 function App() {
 
   const nullNote: INote = {id: 0, name: '', description: '', status: 'pending'}
+
   const [notes, setNotes] = useState<INote[]>([nullNote]);
-  
 
   const [note, setNote] = useState<INote>({...notes[0]});
 
   const [activeId, setActiveId] = useState<number>(0)
 
+  const [findState, setFindState] = useState<string>('')
+
+
   // Функция обновления состояний
   function updateNoteAndNoteList(value:INote){
-    
     setNote(value)
     updateNotes(value)
   }
@@ -92,7 +95,12 @@ function App() {
     }
   }
 
+
+  const searchedNote = useMemo( () => {
+    return notes.filter( note => note.name.toLowerCase().includes(findState))
+  }, [findState, notes])
   
+  console.log('сработал рендер')
 
   return (
     <div className="App">
@@ -100,12 +108,12 @@ function App() {
             <div className='addNote'>
               <button onClick={ () => newNote()} className='addNote_button'>+ Новая заметка</button>
             </div>
-            <NotesList notes={notes} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
+            <NotesList notes={searchedNote} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
           </div>
           <div className='NoteForm'>
                 <div className='DeleteNote'>
                     <button onClick={ () => deleteNote(note)} className='DeleteNote_button'>Удалить</button>
-                    <input placeholder='Поиск по названию' className='FindNote_input'/>
+                    <input value={findState} onChange={ (e) => setFindState(e.target.value)} placeholder='Поиск по названию' className='FindNote_input'/>
                 </div>
                 <NoteEditForm updateNoteAndNoteList={updateNoteAndNoteList} note={note}  />
           </div>
