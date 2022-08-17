@@ -16,20 +16,28 @@ function App() {
 
   const [note, setNote] = useState<INote>({...notes[0]});
 
-  console.log(notes)
+  // Функция обновления состояний
   function updateNote(value:INote){
     
-    setNote(value);
-    
+    setNote(value)
     updateNotes(value)
   }
 
-  function updateNotes(value:INote){
+  // Функция получения клона массива объектов из состояния "notes"
+  function getClone(){
 
     const notesClone:INote[] = []
     notes.forEach( (item) => {
       notesClone.push({...item})
     })
+
+    return notesClone
+  }
+
+  // Функция обновления заметок: проходится циклом по клонированному массиву, сравнивает id и если id равны - присвает свойствам  клонированного массива новые значения, после чего обновляет состояние "notes"
+  function updateNotes(value:INote){
+
+    const notesClone = getClone()
 
     notesClone.forEach( (item) => {
       if(item.id == value.id){
@@ -37,27 +45,20 @@ function App() {
         item.description = value.description
       }
     })
+
     setNotes(notesClone)
-  
   }
 
+  // Функция добавления заметки: создаёт новый объект типа INote и добавляет его в клонированный массив, после чего обновляет состояние "notes"
   function newNote(){
 
-    const notesClone:INote[] = []
-    notes.forEach( (item) => {
-      notesClone.push({...item})
-    })
-
+    const notesClone = getClone()
     const newItem: INote = {
-        id: 1,
+        id: ++(notes[0].id),
         name: '',
         description: '',
         status: 'pending'
     }
-
-    if(notesClone[0]){
-      newItem.id = ++(notes[0].id)
-    } 
 
     notesClone.unshift(newItem)
 
@@ -65,22 +66,21 @@ function App() {
     setNotes(notesClone)
   }
 
+  // Функция удаления заметки: проходится циклом по клонированному массиву, сравнивает id и если id равны - удаляет объект, после чего обновляет состояние "notes"
   function deleteNote(note: INote){
 
-    const notesClone:INote[] = []
-    notes.forEach( (item) => {
-      notesClone.push({...item})
-    })
+    const notesClone = getClone()
 
-    for (let i=0; i<=notesClone.length-1; i++){
-      if (notesClone[i].id == note.id){
-        notesClone.splice(i, 1)
-        setNote(notesClone[i])
+    if(notesClone[1]){
+      for (let i=0; i<=notesClone.length-1; i++){
+        if (notesClone[i].id == note.id){
+          notesClone.splice(i, 1)
+          setNote(notesClone[i])
+        }
       }
-    }
 
-    
-    setNotes(notesClone)
+      setNotes(notesClone)
+    } 
   }
 
   
@@ -88,26 +88,18 @@ function App() {
   return (
     <div className="App">
           <div className='Head'>
-            <div className='NewNote'>
-              <button onClick={ () => newNote()} className='NewNote_button'>+ Новая заметка</button>
+            <div className='addNote'>
+              <button onClick={ () => newNote()} className='addNote_button'>+ Новая заметка</button>
             </div>
             <div className='DeleteNote'>
               <button onClick={ () => deleteNote(note)}>Удалить</button>
             </div>
           </div>
           <div className='Content'>
-            { (notes[0])?
+            
                 <NotesList notes={notes} updateNote={updateNote} />
-                : <div> Элемент отсутствует</div>
-            }
-            { (notes[0])?
+                
                 <NoteEditForm updateNote={updateNote} note={note}  />
-                : <div> Элемент отсутствует</div>
-            }
-                
-                
-            
-            
           </div>
           
     </div>
