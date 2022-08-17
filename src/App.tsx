@@ -14,26 +14,52 @@ function App() {
   ]);
 
 
-  const [note, setNote] = useState<INote>(notes[0]);
+  const [note, setNote] = useState<INote>({...notes[0]});
 
-  function updateNoteState(note:INote){
-    console.log('сработала функция updateNoteState ')
-    setNote(note);
+  function test(){
+    console.log(note)
   }
+
+  function updateNoteState(value:INote){
+    
+    const notesClone:INote[] = []
+    notes.forEach( (item) => {
+      notesClone.push({...item})
+    })
+
+    console.log('сработала функция updateNoteState ')
+    setNote(value);
+    
+    updateNotesState(value, notesClone)
+  }
+
+  function updateNotesState(value:INote, notesClone:INote[]){
+    console.log(value)
+    notesClone.forEach( (item) => {
+      if(item.id == value.id){
+        item.name = value.name
+        item.description = value.description
+      }
+    })
+    setNotes(notesClone)
+  
+  }
+
+  
 
   return (
     <div className="App">
           <div className='Head'>
             <div className='NewNote'>
-              <button className='NewNote_button'>+ Новая заметка</button>
+              <button onClick={ () => test()} className='NewNote_button'>+ Новая заметка</button>
             </div>
             <div className='DeleteNote'>
               <button>Удалить</button>
             </div>
           </div>
           <div className='Content'>
-            <NotesList items={notes} updateNoteState={updateNoteState} />
-            <NoteEditForm updateNoteState={updateNoteState} item={note}  />
+            <NotesList notes={notes} updateNoteState={updateNoteState} />
+            <NoteEditForm updateNoteState={updateNoteState} note={note}  />
           </div>
           
     </div>

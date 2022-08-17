@@ -5,15 +5,15 @@ import { INote } from '../types/types';
 
 
 interface NotesListProps{
-  items: INote[];
+  notes: INote[];
   updateNoteState: (note:INote) => void;
   
 }
 
-const NotesList: FC<NotesListProps> = ({items, updateNoteState}) => {
+const NotesList: FC<NotesListProps> = ({notes, updateNoteState}) => {
   return (
     <div className='NotesList'>
-        {items.map( (item) =>
+        {notes.map( (item) =>
           <NoteItem note={item} updateNoteState={updateNoteState}  />
         )}
     </div>
