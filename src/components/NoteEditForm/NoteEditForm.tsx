@@ -4,10 +4,10 @@ import { INote } from './../types/types';
 
 interface NoteEditFormProps{
     note: INote;
-    updateNoteState: (note:INote) => void;
+    updateNote: (note:INote) => void;
 }
 
-const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteState}) => {
+const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNote}) => {
   
   const [nameState, setNameState] = useState('')
   const [descriptionState, setDescriptionState] = useState('')
@@ -17,7 +17,7 @@ const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteState}) => {
     setDescriptionState(note.description)
   },[note.id])
   
-  function updateNote(e:any, note:INote, name:string, updateNoteState:(note:INote) => void){
+  function cloneAndUpdate(e:any, note:INote, name:string, updateNote:(note:INote) => void){
 
     const cloneItem = {...note}
 
@@ -28,14 +28,13 @@ const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteState}) => {
       cloneItem.description = e.target.value;
     }
     
-    console.log('Сработала функция updatNote')
-    updateNoteState(cloneItem)
+    updateNote(cloneItem)
   }
-  console.log('Сработал рендер всей компоненты')
+ 
   return (
     <div className='NoteEditForm'>
-      <input value={nameState} onBlur={ (e) => updateNote(e, note, 'название', updateNoteState)} onChange={ (e) => setNameState(e.target.value)  }></input>
-      <input value={descriptionState} onBlur={ (e) => updateNote(e, note, 'описание', updateNoteState)} onChange={ (e) => setDescriptionState(e.target.value) }></input>
+      <input value={nameState} onBlur={ (e) => cloneAndUpdate(e, note, 'название', updateNote)} onChange={ (e) => setNameState(e.target.value)  }></input>
+      <input value={descriptionState} onBlur={ (e) => cloneAndUpdate(e, note, 'описание', updateNote)} onChange={ (e) => setDescriptionState(e.target.value) }></input>
     </div>
   )
 }
