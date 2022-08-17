@@ -2,6 +2,7 @@ import React, {useMemo, useState} from 'react';
 import './App.css';
 import NoteEditForm from './components/NoteEditForm/NoteEditForm';
 import NotesList from './components/NotesListForm/NotesList';
+import NotesMenu from './components/NotesMenu/NotesMenu';
 import { INote } from './components/types/types';
 
 
@@ -10,21 +11,25 @@ function App() {
 
   const nullNote: INote = {id: 0, name: '', description: '', status: 'pending'}
 
+  // хранит объект заметок
   const [notes, setNotes] = useState<INote[]>([nullNote]);
 
+  // хранит объект заметки
   const [note, setNote] = useState<INote>({...notes[0]});
 
+  // хранит id заметки, которая выбрана
   const [activeId, setActiveId] = useState<number>(0)
 
+  // хранит значение инпута, который отвечает за поиск по имени
   const [findState, setFindState] = useState<string>('')
 
-  // Функция обновления состояний
+  // Функция обновления состояния заметок
   function updateNoteAndNoteList(value:INote){
-    
     setNote(value)
     updateNotes(value)
   }
 
+  // Функция обновления состояния заметки
   function updateNote(value:INote){
     setNote(value)
   }
@@ -96,29 +101,18 @@ function App() {
   }
 
   // Функция поиска заметок по имени. Хук useMemo следит за изменением состояний findState, notes и при их изменении возвращает отсортированный массив
-  const searchedNote = useMemo( () => {
+  const searchedNotes = useMemo( () => {
     return notes.filter( note => note.name.toLowerCase().includes(findState))
   }, [findState, notes])
 
   
   return (
     <div className="App">
-          <div className='NotesMenu'>
-            <div className='addNote'>
-              <button onClick={ () => newNote()} className='addNote_button'>+ Новая заметка</button>
-            </div>
-            <div className='DeleteNote'>
-              <button onClick={ () => deleteNote(note)} className='DeleteNote_button'>Удалить</button>
-            </div>
-            <div className='FindNote'>
-              <input value={findState} onChange={ (e) => setFindState(e.target.value)} placeholder='Поиск по названию' className='FindNote_input'/>
-            </div>
-          </div>
+          <NotesMenu newNote={newNote} deleteNote={deleteNote} note={note} findState={findState} setFindState={setFindState} />
           <div className='NoteForm'>
-                <NotesList notes={searchedNote} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
-                <NoteEditForm updateNoteAndNoteList={updateNoteAndNoteList} note={note}  />
-          </div>
-          
+              <NotesList notes={searchedNotes} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
+              <NoteEditForm searchedNotes={searchedNotes} updateNoteAndNoteList={updateNoteAndNoteList} note={note}  />
+          </div>  
     </div>
   );
 }

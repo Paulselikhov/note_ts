@@ -9,12 +9,9 @@ interface NotesListProps{
   updateNote: (note:INote) => void;
   activeId: number;
   setActiveId: (num: number) => void;
-  
 }
 
 const NotesList: FC<NotesListProps> = ({notes, updateNote, activeId, setActiveId, }) => {
-
-  
   return (
     <div className='NotesList'>
         {notes.map( (item) =>

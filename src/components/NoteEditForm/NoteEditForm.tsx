@@ -5,15 +5,17 @@ import { INote } from './../types/types';
 interface NoteEditFormProps{
     note: INote;
     updateNoteAndNoteList: (note:INote) => void;
+    searchedNotes: INote[];
 }
 
-const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteAndNoteList}) => {
+const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteAndNoteList, searchedNotes}) => {
   
   const [nameState, setNameState] = useState('')
   const [descriptionState, setDescriptionState] = useState('')
   const [status, setStatus] = useState('')
   
   useEffect( () =>{
+    
     if (note){
       setNameState(note.name)
       setDescriptionState(note.description)
@@ -38,10 +40,10 @@ const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteAndNoteList}) => {
     
     updateNoteAndNoteList(cloneItem)
   }
- 
+    
   return (
     <div className='NoteEditForm'>
-      {note?
+      {searchedNotes[0]?
         <div className='NoteEditForm_found' >
           <div className='NoteEditForm_head'>
             <input value={nameState} onBlur={ (e) => cloneAndUpdate(e, note, 'название', updateNoteAndNoteList)} onChange={ (e) => setNameState(e.target.value)} className='NoteEditForm_inputName' placeholder='Введите название заметки'></input>
