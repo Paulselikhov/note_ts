@@ -11,6 +11,7 @@ interface NotesListProps{
 }
 
 const NotesList: FC<NotesListProps> = ({notes, updateNote}) => {
+  
   return (
     <div className='NotesList'>
         {notes.map( (item) =>

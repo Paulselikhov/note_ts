@@ -17,10 +17,14 @@ function App() {
   const [note, setNote] = useState<INote>({...notes[0]});
 
   // Функция обновления состояний
-  function updateNote(value:INote){
+  function updateNoteAndNoteList(value:INote){
     
     setNote(value)
     updateNotes(value)
+  }
+
+  function updateNote(value:INote){
+    setNote(value)
   }
 
   // Функция получения клона массива объектов из состояния "notes"
@@ -99,7 +103,7 @@ function App() {
             
                 <NotesList notes={notes} updateNote={updateNote} />
                 
-                <NoteEditForm updateNote={updateNote} note={note}  />
+                <NoteEditForm updateNoteAndNoteList={updateNoteAndNoteList} note={note}  />
           </div>
           
     </div>
