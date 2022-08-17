@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo, useState, useEffect} from 'react';
 import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 import './App.css';
 import NoteEditForm from './components/NoteEditForm/NoteEditForm';
@@ -99,6 +99,13 @@ function App() {
   const searchedNote = useMemo( () => {
     return notes.filter( note => note.name.toLowerCase().includes(findState))
   }, [findState, notes])
+
+  useEffect( () => {
+    setNote(searchedNote[0])
+    if (searchedNote[0]){
+      setActiveId(searchedNote[0].id)
+    }
+  }, [searchedNote])
   
   console.log('сработал рендер')
 

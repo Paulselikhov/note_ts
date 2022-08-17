@@ -13,9 +13,12 @@ const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteAndNoteList}) => {
   const [descriptionState, setDescriptionState] = useState('')
   
   useEffect( () =>{
-    setNameState(note.name)
-    setDescriptionState(note.description)
-  },[note.id])
+    if (note){
+      setNameState(note.name)
+      setDescriptionState(note.description)
+    }
+    
+  },[note])
   
   function cloneAndUpdate(e:any, note:INote, name:string, updateNoteAndNoteList:(note:INote) => void){
 
@@ -32,9 +35,16 @@ const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteAndNoteList}) => {
   }
  
   return (
-    <div className='NoteEditForm'>
-      <input value={nameState} onBlur={ (e) => cloneAndUpdate(e, note, 'название', updateNoteAndNoteList)} onChange={ (e) => setNameState(e.target.value)} className='NoteEditForm_inputName' placeholder='Введите название заметки'></input>
-      <textarea value={descriptionState} onBlur={ (e) => cloneAndUpdate(e, note, 'описание', updateNoteAndNoteList)} onChange={ (e) => setDescriptionState(e.target.value)} className='NoteEditForm_inputDescription' placeholder='Введите описание заметки'></textarea>
+    <div>
+      {note?
+        <div className='NoteEditForm'>
+          <input value={nameState} onBlur={ (e) => cloneAndUpdate(e, note, 'название', updateNoteAndNoteList)} onChange={ (e) => setNameState(e.target.value)} className='NoteEditForm_inputName' placeholder='Введите название заметки'></input>
+          <textarea value={descriptionState} onBlur={ (e) => cloneAndUpdate(e, note, 'описание', updateNoteAndNoteList)} onChange={ (e) => setDescriptionState(e.target.value)} className='NoteEditForm_inputDescription' placeholder='Введите описание заметки'></textarea>
+      </div>
+      :<div className='NoteEditForm_notFound'> Заметок не найдено</div>
+      }
+      
+      
     </div>
   )
 }

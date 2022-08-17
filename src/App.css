@@ -114,6 +114,13 @@ input,button{
     height: 80%;
     border: none;
 }
+.NoteEditForm_notFound{
+    margin-top: 10px;
+
+    font-size: 16px;
+    font-weight: 800;
+    text-align: center;
+}
 
 
 
