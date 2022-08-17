@@ -8,9 +8,8 @@ import { INote } from './components/types/types';
 
 function App() {
 
-  const [notes, setNotes] = useState<INote[]>([
-    {id: 2, name: 'Вторая заметка', description: 'Описание заметки', status: 'pending'},
-  ]);
+  const nullNote: INote = {id: 0, name: '', description: '', status: 'pending'}
+  const [notes, setNotes] = useState<INote[]>([nullNote]);
   
 
   const [note, setNote] = useState<INote>({...notes[0]});
@@ -84,29 +83,30 @@ function App() {
           setNote(notesClone[0])
           setActiveId(notesClone[0].id)
         }
-        
       }
-
       setNotes(notesClone)
-    } 
+    } else{
+      notesClone[0] = nullNote
+      setNote(nullNote)
+      setNotes(notesClone)
+    }
   }
 
   
 
   return (
     <div className="App">
-          <div className='Head'>
+          <div className='NotesListForm'>
             <div className='addNote'>
               <button onClick={ () => newNote()} className='addNote_button'>+ Новая заметка</button>
             </div>
-            <div className='DeleteNote'>
-              <button onClick={ () => deleteNote(note)}>Удалить</button>
-            </div>
+            <NotesList notes={notes} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
           </div>
-          <div className='Content'>
-            
-                <NotesList notes={notes} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
-                
+          <div className='NoteForm'>
+                <div className='DeleteNote'>
+                    <button onClick={ () => deleteNote(note)} className='DeleteNote_button'>Удалить</button>
+                    <input placeholder='Поиск по названию' className='FindNote_input'/>
+                </div>
                 <NoteEditForm updateNoteAndNoteList={updateNoteAndNoteList} note={note}  />
           </div>
           
