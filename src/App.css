@@ -94,11 +94,11 @@ textarea{
 .NoteItem{
     height: 100px;
     padding: 10px;
-    border-bottom: 1px solid rgb(128, 73, 73);
+    border-bottom: 2px solid rgb(128, 73, 73);
     
 }
 .NoteItem:hover{
-    background-color: rgb(230, 185, 185);
+    background-color: white;
 }
 .NoteItem_name{
     height: 35px;
@@ -115,10 +115,12 @@ textarea{
     text-overflow: ellipsis;
     
 }
-
+.NoteEditForm_head{
+    display: flex;
+}
 .NoteEditForm_inputName{
     
-    width: 90%;
+    width: 65%;
     
     margin-top: 10px;
     margin-left: 20px;
@@ -126,14 +128,26 @@ textarea{
 
     font-weight: 800;
 }
+.NoteEditForm_select{
+    height: 50px;
+    width: 25%;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 5px;
+
+    border: 1px solid rgb(214, 155, 155);
+    border-radius: 7px 7px;
+
+}
 
 .NoteEditForm_inputDescription{
-    width: 90%;
+    width: 92%;
     height: 77%;
 
     margin-top: 10px;
+    margin-right: 20px;
     margin-left: 20px;
-    
     padding: 10px;
     
     border: none;
@@ -150,7 +164,16 @@ textarea{
 
 
 .active{
-    background-color: rgb(250, 212, 212);
+    background-color: rgb(255, 255, 255);
 }
 
+.pending{
+    background: rgb(255, 200, 200);
+}
+.inProcess{
+    background: rgb(204, 196, 255);
+}
+.resolved{
+    background: rgb(209, 255, 195);
+}
 

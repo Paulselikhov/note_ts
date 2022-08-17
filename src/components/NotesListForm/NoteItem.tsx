@@ -9,18 +9,28 @@ interface NoteItemProps{
 }
 const NoteItem: FC<NoteItemProps> = ({note, updateNote, setActiveId,activeId}) => {
 
+  let className:string = ''
+
+  function setColors(){
+    if (activeId == note.id){
+      className = "NoteItem active"
+    }else if (note.status == "inProcess"){
+      className= className + " " + "NoteItem inProcess"
+    }else if (note.status == "resolved"){
+      className= className + " " + "NoteItem resolved"
+    }else if (note.status == "pending"){
+      className= className + " " + "NoteItem pending"
+    }
+  }
+  setColors()
   
   function updateAndSetColor(note:INote, updateNote: (note: INote) => void){
     updateNote({...note})
-    setColor()
-  }
-
-  function setColor(){
     setActiveId(note.id)
   }
 
   return (
-    <div className={activeId == note.id? "NoteItem active": "NoteItem"} onClick={ () => updateAndSetColor(note, updateNote)} >
+    <div className={className} onClick={ () => updateAndSetColor(note, updateNote)} >
       <div className="NoteItem_name">{note.name}</div> 
       <div className="NoteItem_description">{note.description}</div>
     </div>

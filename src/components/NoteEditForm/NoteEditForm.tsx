@@ -11,11 +11,13 @@ const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteAndNoteList}) => {
   
   const [nameState, setNameState] = useState('')
   const [descriptionState, setDescriptionState] = useState('')
+  const [status, setStatus] = useState('')
   
   useEffect( () =>{
     if (note){
       setNameState(note.name)
       setDescriptionState(note.description)
+      setStatus(note.status)
     }
     
   },[note])
@@ -30,6 +32,9 @@ const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteAndNoteList}) => {
     if(name == 'описание'){
       cloneItem.description = e.target.value;
     }
+    if(name == 'статус'){
+      cloneItem.status = e.target.value;
+    }
     
     updateNoteAndNoteList(cloneItem)
   }
@@ -38,7 +43,15 @@ const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteAndNoteList}) => {
     <div className='NoteEditForm'>
       {note?
         <div className='NoteEditForm_found' >
-          <input value={nameState} onBlur={ (e) => cloneAndUpdate(e, note, 'название', updateNoteAndNoteList)} onChange={ (e) => setNameState(e.target.value)} className='NoteEditForm_inputName' placeholder='Введите название заметки'></input>
+          <div className='NoteEditForm_head'>
+            <input value={nameState} onBlur={ (e) => cloneAndUpdate(e, note, 'название', updateNoteAndNoteList)} onChange={ (e) => setNameState(e.target.value)} className='NoteEditForm_inputName' placeholder='Введите название заметки'></input>
+            <select value={status} onChange={ (e) => {setStatus(e.target.value); cloneAndUpdate(e, note, 'статус', updateNoteAndNoteList)}}  className='NoteEditForm_select'>
+              <option value='pending'>Ожидает</option>
+              <option value='inProcess'>В процессе</option>
+              <option value='resolved'>Выполнена</option>
+            </select>
+          </div>
+          
           <textarea value={descriptionState} onBlur={ (e) => cloneAndUpdate(e, note, 'описание', updateNoteAndNoteList)} onChange={ (e) => setDescriptionState(e.target.value)} className='NoteEditForm_inputDescription' placeholder='Введите описание заметки'></textarea>
       </div>
       :<div className='NoteEditForm_notFound'> Заметок не найдено</div>

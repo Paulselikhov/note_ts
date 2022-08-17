@@ -1,4 +1,4 @@
-import React, {useMemo, useState, useEffect} from 'react';
+import React, {useMemo, useState} from 'react';
 import './App.css';
 import NoteEditForm from './components/NoteEditForm/NoteEditForm';
 import NotesList from './components/NotesListForm/NotesList';
@@ -18,9 +18,9 @@ function App() {
 
   const [findState, setFindState] = useState<string>('')
 
-
   // Функция обновления состояний
   function updateNoteAndNoteList(value:INote){
+    
     setNote(value)
     updateNotes(value)
   }
@@ -49,6 +49,7 @@ function App() {
       if(item.id == value.id){
         item.name = value.name
         item.description = value.description
+        item.status = value.status
       }
     })
 
@@ -99,16 +100,7 @@ function App() {
     return notes.filter( note => note.name.toLowerCase().includes(findState))
   }, [findState, notes])
 
-  useEffect( () => {
-
-    setNote(searchedNote[0])
-    if (searchedNote[0]){
-      setActiveId(searchedNote[0].id)
-    }
-  }, [searchedNote])
   
-  console.log('сработал рендер')
-
   return (
     <div className="App">
           <div className='NotesMenu'>
