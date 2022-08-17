@@ -35,9 +35,9 @@ const NoteEditForm: FC<NoteEditFormProps> = ({note, updateNoteAndNoteList}) => {
   }
  
   return (
-    <div>
+    <div className='NoteEditForm'>
       {note?
-        <div className='NoteEditForm'>
+        <div className='NoteEditForm_found' >
           <input value={nameState} onBlur={ (e) => cloneAndUpdate(e, note, 'название', updateNoteAndNoteList)} onChange={ (e) => setNameState(e.target.value)} className='NoteEditForm_inputName' placeholder='Введите название заметки'></input>
           <textarea value={descriptionState} onBlur={ (e) => cloneAndUpdate(e, note, 'описание', updateNoteAndNoteList)} onChange={ (e) => setDescriptionState(e.target.value)} className='NoteEditForm_inputDescription' placeholder='Введите описание заметки'></textarea>
       </div>

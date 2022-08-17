@@ -1,5 +1,4 @@
 import React, {useMemo, useState, useEffect} from 'react';
-import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
 import './App.css';
 import NoteEditForm from './components/NoteEditForm/NoteEditForm';
 import NotesList from './components/NotesListForm/NotesList';
@@ -95,12 +94,13 @@ function App() {
     }
   }
 
-
+  // Функция поиска заметок по имени. Хук useMemo следит за изменением состояний findState, notes и при их изменении возвращает отсортированный массив
   const searchedNote = useMemo( () => {
     return notes.filter( note => note.name.toLowerCase().includes(findState))
   }, [findState, notes])
 
   useEffect( () => {
+
     setNote(searchedNote[0])
     if (searchedNote[0]){
       setActiveId(searchedNote[0].id)
@@ -111,17 +111,19 @@ function App() {
 
   return (
     <div className="App">
-          <div className='NotesListForm'>
+          <div className='NotesMenu'>
             <div className='addNote'>
               <button onClick={ () => newNote()} className='addNote_button'>+ Новая заметка</button>
             </div>
-            <NotesList notes={searchedNote} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
+            <div className='DeleteNote'>
+              <button onClick={ () => deleteNote(note)} className='DeleteNote_button'>Удалить</button>
+            </div>
+            <div className='FindNote'>
+              <input value={findState} onChange={ (e) => setFindState(e.target.value)} placeholder='Поиск по названию' className='FindNote_input'/>
+            </div>
           </div>
           <div className='NoteForm'>
-                <div className='DeleteNote'>
-                    <button onClick={ () => deleteNote(note)} className='DeleteNote_button'>Удалить</button>
-                    <input value={findState} onChange={ (e) => setFindState(e.target.value)} placeholder='Поиск по названию' className='FindNote_input'/>
-                </div>
+                <NotesList notes={searchedNote} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
                 <NoteEditForm updateNoteAndNoteList={updateNoteAndNoteList} note={note}  />
           </div>
           
