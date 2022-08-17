@@ -1,6 +1,9 @@
 .App{
     
 }
+.active{
+    background-color: rgb(250, 212, 212);
+}
 
 .Head{
     display: flex;
@@ -33,12 +36,28 @@
     height: 90vh;
 }
 .NoteItem{
+    height: 50px;
     padding: 10px;
-    border: 1px solid #000;
+    
+    border-bottom: 1px solid rgb(97, 85, 85);
+    
 }
-.NoteItem:hover{
-    background-color: aliceblue;
+.NoteItem_name{
+    height: 20px;
+    border-bottom: 1px solid rgb(143, 163, 143);
+    padding-bottom: 5px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+.NoteItem_description{
+    height: 25px;
+    padding-top: 5px;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .NoteEditForm{
     border: 1px solid #000;
     border-left: none;

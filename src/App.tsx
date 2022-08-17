@@ -10,11 +10,12 @@ function App() {
 
   const [notes, setNotes] = useState<INote[]>([
     {id: 2, name: 'Вторая заметка', description: 'Описание заметки', status: 'pending'},
-    {id: 1, name: 'Первая заметка', description: 'Описание заметки', status: 'pending'}
   ]);
   
 
   const [note, setNote] = useState<INote>({...notes[0]});
+
+  const [activeId, setActiveId] = useState<number>(0)
 
   // Функция обновления состояний
   function updateNoteAndNoteList(value:INote){
@@ -67,6 +68,7 @@ function App() {
     notesClone.unshift(newItem)
 
     setNote(newItem)
+    setActiveId(newItem.id)
     setNotes(notesClone)
   }
 
@@ -79,8 +81,10 @@ function App() {
       for (let i=0; i<=notesClone.length-1; i++){
         if (notesClone[i].id == note.id){
           notesClone.splice(i, 1)
-          setNote(notesClone[i])
+          setNote(notesClone[0])
+          setActiveId(notesClone[0].id)
         }
+        
       }
 
       setNotes(notesClone)
@@ -101,7 +105,7 @@ function App() {
           </div>
           <div className='Content'>
             
-                <NotesList notes={notes} updateNote={updateNote} />
+                <NotesList notes={notes} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
                 
                 <NoteEditForm updateNoteAndNoteList={updateNoteAndNoteList} note={note}  />
           </div>
