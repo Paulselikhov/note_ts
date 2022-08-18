@@ -4,8 +4,8 @@ import { INote } from '../types/types';
 interface NoteItemProps{
   note: INote;
   updateNote: (note: INote) => void;
-  setActiveId: any;
-  activeId: any;
+  setActiveId: (id: number) => void;
+  activeId: number;
 }
 const NoteItem: FC<NoteItemProps> = ({note, updateNote, setActiveId,activeId}) => {
 

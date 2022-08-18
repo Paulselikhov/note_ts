@@ -1,8 +1,9 @@
 import React,{ FC } from 'react'
+import NoteButton from '../UI/NoteButton';
 import { INote } from './../types/types';
 
 interface NotesMenuProps{
-    newNote: () => void;
+    newNote: (note:INote) => void;
     deleteNote: (note:INote) => void;
     setFindState: (value: string) => void;
     findState: string;
@@ -13,10 +14,10 @@ const NotesMenu: FC<NotesMenuProps> = ({newNote, deleteNote, findState, setFindS
   return (
     <div className='NotesMenu'>
         <div className='addNote'>
-            <button onClick={ () => newNote()} className='addNote_button'>+ Новая заметка</button>
+            <NoteButton noteFunc={newNote} note={note}>+ Новая заметка</NoteButton>
         </div>
         <div className='DeleteNote'>
-            <button onClick={ () => deleteNote(note)} className='DeleteNote_button'>Удалить</button>
+            <NoteButton noteFunc={deleteNote} note={note}>Удалить</NoteButton>
         </div>
         <div className='FindNote'>
             <input value={findState} onChange={ (e) => setFindState(e.target.value)} placeholder='Поиск по названию' className='FindNote_input'/>

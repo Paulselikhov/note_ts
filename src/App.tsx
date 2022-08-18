@@ -62,7 +62,7 @@ function App() {
   }
 
   // Функция добавления заметки: создаёт новый объект типа INote и добавляет его в клонированный массив, после чего обновляет состояние "notes"
-  function newNote(){
+  function newNote(note: INote){
 
     const notesClone = getClone()
     const newItem: INote = {
