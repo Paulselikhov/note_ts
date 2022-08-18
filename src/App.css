@@ -64,7 +64,7 @@ textarea{
 
 
 
-/* Правый блок */
+/* Нижний блок */
 .NoteForm{
     display: flex;
     align-items: flex-start;
@@ -82,17 +82,8 @@ textarea{
     resize: horizontal;
     
 }
-.NoteEditForm{
-    width: 75%;
-    height: 100%;
-    border-left: 1px solid rgb(214, 155, 155);
-}
-.NoteEditForm_found{
-    height: 100%;
-    
-}
 .NoteItem{
-    height: 100px;
+    
     padding: 10px;
     border-bottom: 2px solid rgb(128, 73, 73);
     
@@ -101,18 +92,36 @@ textarea{
     background-color: white;
 }
 .NoteItem_name{
-    height: 35px;
-    border-bottom: 1px solid rgb(128, 73, 73);
+    height: 40px;
+    border: 1px solid rgb(128, 73, 73);
     padding-bottom: 5px;
+    padding-left: 4px;
 
+    white-space: nowrap;
     overflow: hidden;
+    overflow-wrap: break-word;
     text-overflow: ellipsis;
+
 }
 .NoteItem_description{
-    height: 65px;
-    
+    height: 50px;
+    border: 1px solid #000;
+    padding-left: 4px;
+
+    white-space: nowrap;
     overflow: hidden;
+    overflow-wrap: break-word;
     text-overflow: ellipsis;
+
+    font-size: 24px;
+}
+.NoteEditForm{
+    width: 75%;
+    height: 100%;
+    border-left: 1px solid rgb(214, 155, 155);
+}
+.NoteEditForm_found{
+    height: 100%;
     
 }
 .NoteEditForm_head{
@@ -140,7 +149,6 @@ textarea{
     border-radius: 7px 7px;
 
 }
-
 .NoteEditForm_inputDescription{
     width: 92%;
     height: 77%;
