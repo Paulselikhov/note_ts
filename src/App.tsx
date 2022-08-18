@@ -15,24 +15,13 @@ function App() {
   const [notes, setNotes] = useState<INote[]>([nullNote]);
 
   // хранит объект заметки
-  const [note, setNote] = useState<INote>({...notes[0]});
+  const [note, setNote] = useState<INote>(nullNote);
 
   // хранит id заметки, которая выбрана
-  const [activeId, setActiveId] = useState<number>(0)
+  const [activeId, setActiveId] = useState<number>(nullNote.id)
 
   // хранит значение инпута, который отвечает за поиск по имени
   const [findState, setFindState] = useState<string>('')
-
-  // Функция обновления состояния заметок
-  function updateNoteAndNoteList(value:INote){
-    setNote(value)
-    updateNotes(value)
-  }
-
-  // Функция обновления состояния заметки
-  function updateNote(value:INote){
-    setNote(value)
-  }
 
   // Функция получения клона массива объектов из состояния "notes"
   function getClone(){
@@ -43,6 +32,17 @@ function App() {
     })
 
     return notesClone
+  }
+  
+  // Функция обновления состояния заметок
+  function updateNoteAndNoteList(value:INote){
+    setNote(value)
+    updateNotes(value)
+  }
+
+  // Функция обновления состояния заметки
+  function updateNote(value:INote){
+    setNote(value)
   }
 
   // Функция обновления заметок: проходится циклом по клонированному массиву, сравнивает id и если id равны - присвает свойствам  клонированного массива новые значения, после чего обновляет состояние "notes"
@@ -105,14 +105,13 @@ function App() {
     return notes.filter( note => note.name.toLowerCase().includes(findState))
   }, [findState, notes])
 
-  
   return (
     <div className="App">
-          <NotesMenu newNote={newNote} deleteNote={deleteNote} note={note} findState={findState} setFindState={setFindState} />
-          <div className='NoteForm'>
-              <NotesList notes={searchedNotes} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
-              <NoteEditForm searchedNotes={searchedNotes} updateNoteAndNoteList={updateNoteAndNoteList} note={note}  />
-          </div>  
+      <NotesMenu newNote={newNote} deleteNote={deleteNote} note={note} findState={findState} setFindState={setFindState} />
+      <div className='NoteForm'>
+          <NotesList notes={searchedNotes} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId} />
+          <NoteEditForm searchedNotes={searchedNotes} updateNoteAndNoteList={updateNoteAndNoteList} note={note}  />
+      </div>  
     </div>
   );
 }
