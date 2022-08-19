@@ -17,15 +17,14 @@ const NotesMenu: FC<NotesMenuProps> = ({ createNote, editNoteId, deleteNote ,fin
         <div className='NotesMenu'>
             <div className='addNote'>
                 {/* <NoteButton noteFunc={newNote} note={note}>+ Новая заметка</NoteButton> */}
-                <button onClick={createNote}>Добавить</button>
+                <button className='Note_button' onClick={createNote}>Добавить</button>
             </div>
             <br />
             <div className='DeleteNote'>
-                {/* <NoteButton noteFunc={deleteNote} note={note}>Удалить</NoteButton> */}
-                {editNoteId && <button onClick={() => deleteNote(editNoteId)}>Удалить</button>}
+                {editNoteId && <button onClick={() => deleteNote(editNoteId)} className='Note_button'>Удалить</button>}
             </div>
             <div className='FindNote'>
-            <input value={findState} onChange={ (e) => setFindState(e.target.value)} placeholder='Поиск по названию' className='FindNote_input'/>
+                {editNoteId && <input value={findState} onChange={ (e) => setFindState(e.target.value)} placeholder='Поиск по названию' className='FindNote_input'/>}
             </div>
         </div>
     )

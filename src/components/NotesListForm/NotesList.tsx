@@ -16,7 +16,7 @@ const NotesList: FC<NotesListProps> = ({notes, setActiveNote, activeNote}) => {
     <div className='NotesList'>
         { notes.length? notes.map((item) =>
             <NoteItem note={item} setActiveNote={setActiveNote} activeNote={activeNote} />
-          ): <div>Заметок не найдено</div>}
+          ): <div className='NotFound'>Заметок не найдено</div>}
     </div>
   )
 }
