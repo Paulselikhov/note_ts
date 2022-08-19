@@ -12,14 +12,15 @@ const NOTE_TEMPLATE = {
 function App() {
 
   // хранит массив заметок
-  const [notes, setNotes] = useState<INote[]>([]);
-
+  const [notes, setNotes] = useState<INote[]>([])
+  
   // хранит объект заметки
-  const [activeNote, setActiveNote] = useState<INote | null>(null);
+  const [activeNote, setActiveNote] = useState<INote | null>(null)
 
   // хранит значение инпута, который отвечает за поиск по имени
   const [findState, setFindState] = useState<string>('')
   
+  // Функция создания заметки. Создаёт объект на основе константы NOTE_TEMPLATE
   const createNote = () => {
     const newNote = { ...NOTE_TEMPLATE, id: notes.length ? notes[0].id + 1 : 1 }
 
@@ -30,6 +31,7 @@ function App() {
     setActiveNote(newNote) // При добавлении новой заметки мы перемещаем фокус на неё, передавь состояние editNote в компонент NoteEditForm
   }
 
+  // Функция обновления заметки. Принимает параметром объект заметки, итерируется по массиву и для каждого элемента выполняет условие, при котором заметка возвращает старое значение, либо новое
   const updateNote = (note: INote) => {
     const updateNotes = notes.map(item => {
       if (item.id === note.id) {
@@ -41,11 +43,11 @@ function App() {
     setActiveNote(note)
   }
 
+  // Функция удаления заметки. Принимает параметром id заметки и фильтрует массив заметок по указанному условию
   const deleteNote = (noteId: number) => {
     setNotes(prev => prev.filter(item => item.id !== noteId))
     setActiveNote(null)
   }
-
 
   // Функция поиска заметок по имени. Хук useMemo следит за изменением состояний findState, notes и при их изменении возвращает отсортированный массив
   const searchedNotes = useMemo( () => {

@@ -12,8 +12,6 @@ const NoteEditForm: FC<NoteEditFormProps> = ({ note, updateNote, searchedNotes }
   
   const [noteFields, setNoteFields] = useState(note)
 
-  
-  
   useEffect(() => {
     setNoteFields(note)
   }, [note])
@@ -42,7 +40,6 @@ const NoteEditForm: FC<NoteEditFormProps> = ({ note, updateNote, searchedNotes }
             <option value='resolved'>Выполнена</option>
           </select>
         </div>
-
         <textarea value={noteFields.description} onChange={(e) => updateNoteFields('description', e.target.value)} onBlur={() => updateNote(noteFields)} className='NoteEditForm_inputDescription' placeholder='Введите описание заметки'></textarea>
       </div>
 

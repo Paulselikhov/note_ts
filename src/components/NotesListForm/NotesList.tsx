@@ -11,11 +11,10 @@ interface NotesListProps{
 }
 
 const NotesList: FC<NotesListProps> = ({notes, setActiveNote, activeNote}) => {
-  
   return (
     <div className='NotesList'>
         { notes.length? notes.map((item) =>
-            <NoteItem note={item} setActiveNote={setActiveNote} activeNote={activeNote} />
+            <NoteItem note={item} key={item.id} setActiveNote={setActiveNote} activeNote={activeNote} />
           ): <div className='NotFound'>Заметок не найдено</div>}
     </div>
   )

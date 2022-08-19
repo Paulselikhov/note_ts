@@ -1,22 +1,17 @@
-import React, { FC } from 'react'
-import NoteButton from '../UI/NoteButton';
-import { INote } from './../types/types';
+import React, { FC } from 'react';
 
 interface NotesMenuProps {
     createNote: () => void;
     deleteNote: (noteId: number) => void;
     setFindState: (value: string) => void;
     findState: string;
-    note?: INote;
     editNoteId: number | undefined;
-
 }
 
 const NotesMenu: FC<NotesMenuProps> = ({ createNote, editNoteId, deleteNote ,findState, setFindState }) => {
     return (
         <div className='NotesMenu'>
             <div className='addNote'>
-                {/* <NoteButton noteFunc={newNote} note={note}>+ Новая заметка</NoteButton> */}
                 <button className='Note_button' onClick={createNote}>Добавить</button>
             </div>
             <br />
