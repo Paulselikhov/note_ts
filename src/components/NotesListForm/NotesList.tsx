@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
 import '../../App.css';
 import NoteItem from './NoteItem';
 import { INote } from '../types/types';
@@ -6,14 +6,16 @@ import { INote } from '../types/types';
 
 interface NotesListProps{
   notes: INote[];
-  addEditNote: (note:INote) => void;
+  setActiveNote: (note:INote) => void;
+  activeNote:INote | null;
 }
 
-const NotesList: FC<NotesListProps> = ({notes, addEditNote, }) => {
+const NotesList: FC<NotesListProps> = ({notes, setActiveNote, activeNote}) => {
+  
   return (
     <div className='NotesList'>
         { notes.length? notes.map((item) =>
-            <NoteItem note={item} addEditNote={addEditNote} />
+            <NoteItem note={item} setActiveNote={setActiveNote} activeNote={activeNote} />
           ): <div>Заметок не найдено</div>}
     </div>
   )
