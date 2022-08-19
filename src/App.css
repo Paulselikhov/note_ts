@@ -80,6 +80,7 @@ textarea{
     height: 100%;
     overflow: auto;
     resize: horizontal;
+    border-right: 1px solid #000;
     
 }
 .NoteItem{
@@ -93,7 +94,7 @@ textarea{
 }
 .NoteItem_name{
     height: 40px;
-    border: 1px solid rgb(128, 73, 73);
+    border-bottom: 1px solid rgb(128, 73, 73);
     padding-bottom: 5px;
     padding-left: 4px;
 
@@ -105,7 +106,7 @@ textarea{
 }
 .NoteItem_description{
     height: 50px;
-    border: 1px solid #000;
+    border-bottom: 1px solid #000;
     padding-left: 4px;
 
     /* Обрезает описание заметки */
@@ -120,7 +121,6 @@ textarea{
 .NoteEditForm{
     width: 75%;
     height: 100%;
-    border-left: 1px solid rgb(214, 155, 155);
 }
 .NoteEditForm_found{
     height: 100%;

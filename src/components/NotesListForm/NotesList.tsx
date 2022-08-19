@@ -6,19 +6,16 @@ import { INote } from '../types/types';
 
 interface NotesListProps{
   notes: INote[];
-  updateNote: (note:INote) => void;
-  activeId: number;
-  setActiveId: (num: number) => void;
+  addEditNote: (note:INote) => void;
 }
 
-const NotesList: FC<NotesListProps> = ({notes, updateNote, activeId, setActiveId, }) => {
+const NotesList: FC<NotesListProps> = ({notes, addEditNote, }) => {
   return (
     <div className='NotesList'>
-        {notes.map( (item) =>
-          <NoteItem note={item} updateNote={updateNote} setActiveId={setActiveId} activeId={activeId}  />
-        )}
+        { notes.length? notes.map((item) =>
+            <NoteItem note={item} addEditNote={addEditNote} />
+          ): <div>Заметок не найдено</div>}
     </div>
-    
   )
 }
 
