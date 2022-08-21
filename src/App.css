@@ -1,54 +1,49 @@
-*{
+* {
     font-size: 30px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+        sans-serif;
 }
-input,button{
+input,
+button {
     border: none;
     background: none;
     margin: none;
     padding: none;
 }
-textarea{
+textarea {
     resize: none;
 }
 
-
-
-
-
-
 /* Верхний блок */
-.NotesMenu{
+.NotesMenu {
     display: flex;
     border: 1px solid rgb(128, 73, 73);
     border-bottom: none;
     height: 80px;
     align-items: center;
-    
 }
-.addNote{
+.addNote {
     width: 25%;
     height: 45%;
-
 }
-.Note_button{
+.Note_button {
     width: 100%;
     height: 100%;
 }
-.Note_button:hover{
+.Note_button:hover {
     font-weight: 600;
 }
 
-.DeleteNote{
+.DeleteNote {
     width: 25%;
     height: 45%;
     border-left: 1px solid rgb(128, 73, 73);
 }
-.Note_button{
+.Note_button {
     width: 100%;
     height: 100%;
 }
-.FindNote{
+.FindNote {
     height: 45%;
     width: 50%;
     display: flex;
@@ -56,27 +51,22 @@ textarea{
     justify-content: center;
     border-left: 1px solid rgb(128, 73, 73);
 }
-.FindNote_input{
+.FindNote_input {
     padding: 10px;
-    
+
     width: 90%;
     height: 90%;
-    
 }
 
-
-
-
 /* Нижний блок */
-.NoteForm{
+.NoteForm {
     display: flex;
     align-items: flex-start;
     border: 1px solid rgb(128, 73, 73);
-    
+
     height: 82vh;
-    
 }
-.NotesList{
+.NotesList {
     width: 25%;
     max-width: 50%;
     min-width: 25%;
@@ -84,18 +74,15 @@ textarea{
     overflow: auto;
     resize: horizontal;
     border-right: 1px solid rgb(128, 73, 73);
-    
 }
-.NoteItem{
-    
+.NoteItem {
     padding: 10px;
     border-bottom: 2px solid rgb(128, 73, 73);
-    
 }
-.NoteItem:hover{
+.NoteItem:hover {
     background-color: white;
 }
-.NoteItem_name{
+.NoteItem_name {
     height: 40px;
     border-bottom: 1px solid rgb(128, 73, 73);
     padding-bottom: 5px;
@@ -107,7 +94,7 @@ textarea{
     overflow-wrap: break-word;
     text-overflow: ellipsis;
 }
-.NoteItem_description{
+.NoteItem_description {
     height: 50px;
     border-bottom: 1px solid #000;
     padding-left: 10px;
@@ -117,36 +104,34 @@ textarea{
     overflow: hidden;
     overflow-wrap: break-word;
     text-overflow: ellipsis;
-    
+
     color: rgb(109, 80, 80);
     font-size: 22px;
 }
-.NotFound{
+.NotFound {
     text-align: center;
     padding-top: 20px;
 }
-.NoteEditForm{
+.NoteEditForm {
     width: 75%;
     height: 100%;
 }
-.NoteEditForm_found{
+.NoteEditForm_found {
     height: 100%;
-    
 }
-.NoteEditForm_head{
+.NoteEditForm_head {
     display: flex;
 }
-.NoteEditForm_inputName{
-    
+.NoteEditForm_inputName {
     width: 65%;
-    
+
     margin-top: 10px;
     margin-left: 20px;
     padding: 10px;
 
     font-weight: 800;
 }
-.NoteEditForm_select{
+.NoteEditForm_select {
     height: 50px;
     width: 25%;
     margin-right: 10px;
@@ -156,9 +141,8 @@ textarea{
 
     border: 1px solid rgb(214, 155, 155);
     border-radius: 7px 7px;
-
 }
-.NoteEditForm_inputDescription{
+.NoteEditForm_inputDescription {
     width: 92%;
     height: 77%;
 
@@ -166,31 +150,26 @@ textarea{
     margin-right: 20px;
     margin-left: 20px;
     padding: 10px;
-    
+
     border: none;
 }
-.NoteEditForm_notFound{
+.NoteEditForm_notFound {
     margin-top: 10px;
 
     font-weight: 800;
     text-align: center;
 }
 
-
-
-
-
-.active{
+.active {
     border: 1px solid rgb(85, 69, 69);
 }
 
-.pending{
+.pending {
     background: rgb(255, 200, 200);
 }
-.inProcess{
+.inProcess {
     background: rgb(204, 196, 255);
 }
-.resolved{
+.resolved {
     background: rgb(209, 255, 195);
 }
-
